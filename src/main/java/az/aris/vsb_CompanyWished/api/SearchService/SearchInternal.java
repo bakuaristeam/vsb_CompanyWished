@@ -89,4 +89,20 @@ public class SearchInternal {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    public List<CompanyWished> getCompanyWisheds(){
+        try {
+            List<CompanyWished> list = hazelcastUtility.getCompanyWisheds();
+            if (list  == null || list.isEmpty()){
+                logger.info("{} : {}","No","Content");
+                return null;
+            }else {
+                return list;
+            }
+        }catch (Exception e){
+            logger.info("{} : {}","Error",e);
+            return null;
+        }
+    }
+
 }

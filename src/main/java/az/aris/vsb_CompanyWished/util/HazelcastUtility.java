@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -96,4 +97,17 @@ public class HazelcastUtility {
         }
         return mapOfRequestDate.get(requestDate);
     }
+
+    public List<CompanyWished> getCompanyWisheds() throws Exception{
+        if(mapOfCompanyWished.isEmpty()){
+            startCaching();
+        }
+
+        List<CompanyWished> list = new ArrayList<>();
+        for (Long idCompanyWished : mapOfCompanyWished.keySet()) {
+            list.add(mapOfCompanyWished.get(idCompanyWished));
+        }
+        return list;
+    }
+
 }

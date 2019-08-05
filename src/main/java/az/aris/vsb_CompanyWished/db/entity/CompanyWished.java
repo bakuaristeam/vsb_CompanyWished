@@ -5,13 +5,12 @@ import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
-@Table(name = "CompanyWished")
 public class CompanyWished implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CompanyWished", nullable = false, unique = true)
+    @Column(name = "idCompanyWished", nullable = false, unique = true)
     private long idCompanyWished;
     private long idDriver;
     private long idCompany;

@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface Repo extends JpaRepository<CompanyWished,Long> {
 
+
     CompanyWished findByIdCompanyWished(long idCompanyWished);
 
     List<CompanyWished> findByIdCompany(long idCompany);
@@ -15,4 +16,6 @@ public interface Repo extends JpaRepository<CompanyWished,Long> {
     List<CompanyWished> findByIdDriver(long idDriver);
 
     List<CompanyWished> findByRequestDate(Date requestDate);
+
+    List<CompanyWished> findByIsActive(int isActive);
 }

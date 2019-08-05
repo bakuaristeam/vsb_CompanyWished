@@ -12,26 +12,32 @@ import java.util.List;
 public class DatabaseService {
     @Autowired
     Repo repo;
+
     public CompanyWished insertUpdate(CompanyWished companyWished) throws Exception {
-        companyWished= repo.save(companyWished);
+        companyWished = repo.save(companyWished);
         return companyWished;
     }
 
     public List<CompanyWished> findAllAsList() {
-        return repo.findAll();
+        return repo.findByIsActive(1);
     }
+
     public List<CompanyWished> findByIdDriver(Long idDriver) {
         return repo.findByIdDriver(idDriver);
     }
+
     public List<CompanyWished> findByIdCompany(Long idCompany) {
         return repo.findByIdCompany(idCompany);
     }
+
     public List<CompanyWished> findByRequestDate(Date requestDate) {
         return repo.findByRequestDate(requestDate);
     }
-    public void removeCompanyWished(Long idCompanyWished)throws Exception{
-        CompanyWished companyWished= repo.findByIdCompanyWished(idCompanyWished);
-        repo.delete(companyWished);
+
+    public void removeCompanyWished(Long idCompanyWished) throws Exception {
+        CompanyWished companyWished = repo.findByIdCompanyWished(idCompanyWished);
+        companyWished.setIsActive(0);
+        repo.save(companyWished);
     }
 
 }

@@ -47,4 +47,9 @@ public class SearchController {
         logger.info("{}", "getting Request Date by id from hazelcast...");
         return searchInternal.getRequestDate(requestDate);
     }
+
+    @GetMapping("/getCompanyWisheds")
+    public List<CompanyWished> getCompanyWisheds(){
+        return searchInternal.getCompanyWisheds();
+    }
 }

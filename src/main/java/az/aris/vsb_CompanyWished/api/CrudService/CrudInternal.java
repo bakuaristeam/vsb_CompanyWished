@@ -33,6 +33,8 @@ public class CrudInternal {
             companyWished.setIsActive(saveUpd.getIsActive());
             companyWished.setNote(saveUpd.getNote());
 
+            companyWished.setIsActive(1);
+
             companyWished = hazelcastUtility.save(companyWished);
             logger.info("{}", "Saving CompanyWished");
             return new ResponseEntity<>(companyWished, HttpStatus.OK);
