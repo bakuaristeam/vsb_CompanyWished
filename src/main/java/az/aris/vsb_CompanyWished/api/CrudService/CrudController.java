@@ -23,6 +23,6 @@ public class CrudController {
 
     @GetMapping("/delete/{idCompanyWished}")
     public ResponseEntity<CompanyWished> deleteCompanyWished(@PathVariable("idCompanyWished") long idCompanyWished) throws Exception {
-        return crudInternal.deleteCompayWished(idCompanyWished);
+        return crudInternal.deleteCompanyWished(idCompanyWished);
     }
 }

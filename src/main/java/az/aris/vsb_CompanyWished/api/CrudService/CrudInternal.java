@@ -43,7 +43,8 @@ public class CrudInternal {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    public ResponseEntity<CompanyWished> updateCompanyWished(SaveUpdate saveUpd )throws Exception{
+
+    public ResponseEntity<CompanyWished> updateCompanyWished(SaveUpdate saveUpd) throws Exception {
         CompanyWished companyWished = repo.findByIdCompanyWished(saveUpd.getIdCompanyWished());
 
         try {
@@ -62,22 +63,17 @@ public class CrudInternal {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    public ResponseEntity<CompanyWished> deleteCompayWished(Long idCompanyWished) {
-        try {
-            CompanyWished companyWished= new CompanyWished();
-            if (companyWished == null) {
-                logger.info("{}", "Such a CompanyWished does not exist");
-                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
-            }else {
-                hazelcastUtility.deleteCompanyWished(idCompanyWished);
-                logger.info("Successfully removed: {}",idCompanyWished);
-                return new ResponseEntity<>(companyWished,HttpStatus.OK);
-            }
 
-        } catch (Exception e) {
-            logger.info("{}", "Error Delete CompanyWished ", e);
+    public ResponseEntity<CompanyWished> deleteCompanyWished(Long idCompanyWished) throws Exception{
+        CompanyWished companyWished = new CompanyWished();
+        try {
+            hazelcastUtility.deleteCompanyWished(idCompanyWished);
+            logger.info("{} : {}","Delete CompanyWished",idCompanyWished);
+            return new ResponseEntity<>(companyWished,HttpStatus.OK);
+        }catch (Exception e){
+            logger.info("{} : {}","Error delete CompanyWished",e);
+            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return null;
     }
 }
 
